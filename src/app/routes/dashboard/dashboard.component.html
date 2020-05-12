@@ -15,10 +15,10 @@
 </div>
 
 <div sg-container="1">
-  <sg>
-    <nz-card style="height:400px;">
-      <h1>It's Teable Dashboard.</h1>
+  <sg *ngFor="let registryApp of registryApps">
+    <nz-card  nzHoverable style="width:240px" (click)="ssoOpen(registryApp)">
+      <nz-card-meta nzTitle="{{registryApp.name}}" nzDescription="{{registryApp.remark}}"></nz-card-meta>
     </nz-card>
   </sg>
-
+  
 </div>
