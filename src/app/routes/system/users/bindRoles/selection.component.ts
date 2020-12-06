@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { NzMessageService, NzModalRef, TransferChange, NzTransferComponent } from 'ng-zorro-antd';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-role-selection',
@@ -16,7 +17,7 @@ export class RoleSelectionComponent implements OnInit {
   constructor(private modal: NzModalRef, private msgSrv: NzMessageService, public http: _HttpClient) {}
 
   ngOnInit() {
-    this.http.get(`/sysusers/getRolesByUser/${this.userId}`).subscribe(res => {
+    this.http.get(`${APIs.sysusers}/getRolesByUser/${this.userId}`).subscribe(res => {
       const roleArr = res.map(role => {
         role.key = role.id;
         role.title = role.name;

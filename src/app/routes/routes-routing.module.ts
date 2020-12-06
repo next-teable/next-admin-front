@@ -26,6 +26,7 @@ const routes: Routes = [
       { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
       { path: 'dashboard', component: DashboardComponent, data: { title: '仪表盘' } },
       // { path: 'users', component: UsersCurdComponent, data: { title: '用户管理' } },
+      { path: 'business', loadChildren: () => import('./business/business.module').then(m => m.BusinessModule) },
       { path: 'system', loadChildren: () => import('./system/system.module').then(m => m.SystemModule) },
       { path: 'exception', loadChildren: () => import('./exception/exception.module').then(m => m.ExceptionModule) },
       // 业务子模块

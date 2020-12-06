@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "teable-frontend": {
+    "budday-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/teable-frontend",
+            "outputPath": "dist/budday-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.less"
+              "src/styles.less",
+              "node_modules/ngx-simplemde/index.less"
             ],
             "scripts": [
               "node_modules/ajv/dist/ajv.bundle.js",
@@ -36,6 +37,7 @@
               "node_modules/@antv/data-set/dist/data-set.min.js",
               "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js",
               "node_modules/@antv/g2/dist/g2.min.js",
+              "node_modules/simplemde-antd/dist/simplemde.min.js",
               "node_modules/@antv/data-set/dist/data-set.min.js",
               "node_modules/@antv/g2-plugin-slider/dist/g2-plugin-slider.min.js"
             ]
@@ -83,15 +85,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "teable-frontend:build",
+            "browserTarget": "budday-frontend:build",
             "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "teable-frontend:build:production"
+              "browserTarget": "budday-frontend:build:production"
             },
             "hmr": {
-              "browserTarget": "teable-frontend:build:hmr",
+              "browserTarget": "budday-frontend:build:hmr",
               "hmr": true
             }
           }
@@ -99,7 +101,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "teable-frontend:build"
+            "browserTarget": "budday-frontend:build"
           }
         },
         "test": {
@@ -144,18 +146,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "teable-frontend:serve"
+            "devServerTarget": "budday-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "teable-frontend:serve:production"
+              "devServerTarget": "budday-frontend:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "teable-frontend",
+  "defaultProject": "budday-frontend",
   "schematics": {
     "ng-alain:module": {
       "routing": true,

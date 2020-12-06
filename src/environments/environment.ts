@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  SERVER_URL: `http://localhost:8080/api`,
+  SERVER_URL: `http://local.vanish.com:8888/`,
   production: false,
   useHash: true,
   hmr: false,

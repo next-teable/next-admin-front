@@ -3,13 +3,14 @@ import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
 import { STComponent, STColumn } from '@delon/abc';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-users-single-selection',
   templateUrl: './single-selection.component.html',
 })
 export class SystemUsersSingleSelectionComponent implements OnInit {
-  url = `/sysusers`;
+  url = `${APIs.sysusers}`;
   searchSchema: SFSchema = {
     properties: {
       searchKeywords: {

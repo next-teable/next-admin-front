@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-selection-edit',
@@ -45,11 +46,11 @@ export class SystemSelectionEditComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.record.id > 0)
-    this.http.get(`/user/${this.record.id}`).subscribe(res => (this.i = res));
+    this.http.get(`${APIs.user}/${this.record.id}`).subscribe(res => (this.i = res));
   }
 
   save(value: any) {
-    this.http.post(`/user/${this.record.id}`, value).subscribe(res => {
+    this.http.post(`${APIs.user}/${this.record.id}`, value).subscribe(res => {
       this.msgSrv.success('保存成功');
       this.modal.close(true);
     });

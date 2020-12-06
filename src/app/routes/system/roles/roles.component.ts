@@ -7,6 +7,7 @@ import { NzTreeComponent } from 'ng-zorro-antd/tree';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree/nz-tree-base-node';
 import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 import { UsersSelectionComponent } from '../users/selection/selection.component';
+import { APIs } from '@shared/api';
 @Component({
   selector: 'app-system-roles',
   templateUrl: './roles.component.html',
@@ -19,7 +20,7 @@ export class SystemRolesComponent implements OnInit {
 
   permissionsData = [];
 
-  url = `/roles`;
+  url = `${APIs.roles}`;
 
   searchSchema: SFSchema = {
     properties: {
@@ -53,7 +54,7 @@ export class SystemRolesComponent implements OnInit {
     },
   ];
 
-  getUsersByRoleUrl = `/roles/getUsersByRole/${this.selectedRoleId}`;
+  getUsersByRoleUrl = `${APIs.roles}/getUsersByRole/${this.selectedRoleId}`;
   getUsersByRoleReq: STReq = {
     lazyLoad: true,
   };
@@ -102,13 +103,13 @@ export class SystemRolesComponent implements OnInit {
   reloadResouce() {
     if (this.selectedRoleId) {
       if (this.selectedTabIndex === 0) {
-        this.getUsersByRoleUrl = `/roles/getUsersByRole/${this.selectedRoleId}`;
+        this.getUsersByRoleUrl = `${APIs.roles}/getUsersByRole/${this.selectedRoleId}`;
         this.bindUserSt.reload();
       }
       if (this.selectedTabIndex === 1) {
         // load bound menu trees
         console.log('load bound menu trees');
-        this.http.get(`/roles/getMenusByRole/${this.selectedRoleId}`).subscribe(menusData => {
+        this.http.get(`${APIs.roles}/getMenusByRole/${this.selectedRoleId}`).subscribe(menusData => {
           const topMenu = [
             {
               title: '导航',
@@ -144,7 +145,7 @@ export class SystemRolesComponent implements OnInit {
         });
       }
       if (this.selectedTabIndex === 2) {
-        this.http.get(`/roles/getPermissionsByRole/${this.selectedRoleId}`).subscribe(permissionData => {
+        this.http.get(`${APIs.roles}/getPermissionsByRole/${this.selectedRoleId}`).subscribe(permissionData => {
           this.permissionsData = permissionData;
         });
       }
@@ -166,7 +167,7 @@ export class SystemRolesComponent implements OnInit {
     const checkedMenus = [];
     this.getCheckedNodes(this.menuTree.getTreeNodes()[0].children, checkedMenus);
     console.log(`checkedMenus:${checkedMenus}`);
-    this.http.post(`/roles/bindMenusByRole/${this.selectedRoleId}`, { menuIds: checkedMenus }).subscribe(res => {
+    this.http.post(`${APIs.roles}/bindMenusByRole/${this.selectedRoleId}`, { menuIds: checkedMenus }).subscribe(res => {
       this.msgSrv.success('操作成功');
     });
   }
@@ -186,7 +187,7 @@ export class SystemRolesComponent implements OnInit {
     if (this.selectedRoleId) {
       this.modal.create(UsersSelectionComponent, { record: {} }, { size: 'lg' }).subscribe(selectedKeys => {
         console.log(`keys:${selectedKeys}`);
-        this.http.post(`/roles/bindUsersByRole/${this.selectedRoleId}`, { userIds: selectedKeys }).subscribe(res => {
+        this.http.post(`${APIs.roles}/bindUsersByRole/${this.selectedRoleId}`, { userIds: selectedKeys }).subscribe(res => {
           this.msgSrv.success('操作成功');
           // this.st.reload();
           this.refreshUsers();
@@ -210,7 +211,7 @@ export class SystemRolesComponent implements OnInit {
           });
           console.log(`checkedMenus:${checkedUserIds}`);
           this.http
-            .post(`/roles/unBindUsersByRole/${this.selectedRoleId}`, { userIds: checkedUserIds })
+            .post(`${APIs.roles}/unBindUsersByRole/${this.selectedRoleId}`, { userIds: checkedUserIds })
             .subscribe(res => {
               this.msgSrv.success('操作成功');
               // this.st.reload();

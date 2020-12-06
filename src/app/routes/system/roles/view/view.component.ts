@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-roles-view',
@@ -17,7 +18,7 @@ export class SystemRolesViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.http.get(`/user/${this.record.id}`).subscribe(res => this.i = res);
+    this.http.get(`${APIs.user}/${this.record.id}`).subscribe(res => this.i = res);
   }
 
   close() {

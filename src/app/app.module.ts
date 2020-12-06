@@ -63,7 +63,9 @@ const INTERCEPTOR_PROVIDES = [
 // #endregion
 
 // #region global third module
-const GLOBAL_THIRD_MODULES = [];
+const GLOBAL_THIRD_MODULES = [
+];
+
 // #endregion
 
 // #region Startup Service
@@ -107,4 +109,6 @@ import { LayoutModule } from './layout/layout.module';
   providers: [...LANG_PROVIDES, ...INTERCEPTOR_PROVIDES, ...I18NSERVICE_PROVIDES, ...APPINIT_PROVIDES],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule {
+ 
+}

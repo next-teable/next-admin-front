@@ -3,6 +3,7 @@ import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
 import { RSAEncrypt } from '@shared/utils/rsaEncrypt';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-user-resetpwd',
@@ -43,7 +44,7 @@ export class ResetPwdComponent implements OnInit {
       return;
     }
     this.http
-      .post(`/sysusers/${this.username}/updatePassword`, {
+      .post(`${APIs.sysusers}/${this.username}/resetPwd`, {
         newPass: this.rsaEncrypt.encrypted(value.newPass),
       })
       .subscribe(res => {

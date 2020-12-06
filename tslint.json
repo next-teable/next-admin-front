@@ -24,7 +24,7 @@
       "camelCase"
     ],
     "component-selector": [
-      true,
+      false,
       "element",
       ["app", "passport", "exception", "layout", "header"],
       "kebab-case"

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-organizations-edit',
@@ -40,7 +41,7 @@ export class SystemOrganizationsEditComponent implements OnInit {
   save(value: any) {
     if (this.record.id) {
       this.http
-        .put(`/organizations/${this.record.id}`, {
+        .put(`${APIs.organizations}/${this.record.id}`, {
           parentId: this.record.parentId,
           ...value,
         })
@@ -50,7 +51,7 @@ export class SystemOrganizationsEditComponent implements OnInit {
         });
     } else {
       this.http
-        .post(`/organizations`, {
+        .post(`${APIs.organizations}`, {
           parentId: this.parent.id,
           ...value,
         })

@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-roles-edit',
@@ -33,12 +34,12 @@ export class SystemRolesEditComponent implements OnInit {
 
   save(value: any) {
     if (this.record.id) {
-      this.http.put(`/roles/${this.record.id}`, value).subscribe(res => {
+      this.http.put(`${APIs.roles}/${this.record.id}`, value).subscribe(res => {
         this.msgSrv.success('保存成功');
         this.modal.close(true);
       });
     } else {
-      this.http.post(`/roles`, value).subscribe(res => {
+      this.http.post(`${APIs.roles}`, value).subscribe(res => {
         this.msgSrv.success('保存成功');
         this.modal.close(true);
       });

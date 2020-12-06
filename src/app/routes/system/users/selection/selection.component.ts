@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { _HttpClient } from '@delon/theme';
 import { NzMessageService, NzModalRef, TransferChange, NzTransferComponent } from 'ng-zorro-antd';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-users-selection',
@@ -24,7 +25,7 @@ export class UsersSelectionComponent implements OnInit {
 
   searchData(): void {
     this.http
-      .get(`/sysusers`, { page: this.pageIndex - 1, size: this.pageSize, enabled: true, sort: 'createdAt,desc' })
+      .get(`${APIs.sysusers}/query`)
       .subscribe(res => {
         this.usersData = res;
         this.usersData.content.forEach(user => {

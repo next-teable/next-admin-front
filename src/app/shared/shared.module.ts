@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
 // delon
 import { AlainThemeModule } from '@delon/theme';
 import { DelonABCModule } from '@delon/abc';
@@ -17,12 +18,16 @@ import { AttachemntService } from './utils/attachement.service';
 import { DelonChartModule } from '@delon/chart';
 import { ZorroSharperModule } from 'zorro-sharper';
 import { NgDecodeURIComponentPipeModule } from 'angular-pipes';
+import { SimplemdeModule } from 'ngx-simplemde';
+
+
 const THIRDMODULES = [
   NgZorroAntdModule,
   CountdownModule,
   DelonChartModule,
   ZorroSharperModule,
   NgDecodeURIComponentPipeModule,
+  SimplemdeModule,
 ];
 // #endregion
 

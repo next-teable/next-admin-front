@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-audit-logs-view',
@@ -12,7 +13,7 @@ export class SystemAuditLogsViewComponent implements OnInit {
   constructor(private modal: NzModalRef, public msgSrv: NzMessageService, public http: _HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get(`/auditLogs/${this.record.id}`).subscribe(res => (this.record = res));
+    this.http.get(`${APIs.auditLogs}/${this.record.id}`).subscribe(res => (this.record = res));
   }
 
   close() {

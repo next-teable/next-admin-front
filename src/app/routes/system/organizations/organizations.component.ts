@@ -8,6 +8,7 @@ import { UsersSelectionComponent } from '../users/selection/selection.component'
 import { SystemOrganizationsEditComponent } from './edit/edit.component';
 import { SystemOrganizationsViewComponent } from './view/view.component';
 import { of } from 'rxjs';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-organizations',
@@ -19,7 +20,7 @@ export class SystemOrganizationsComponent implements OnInit {
   selectedOrgId = '';
   selectedOrgNode = {};
 
-  getUsersByOrgUrl = `/organizations/${this.selectedOrgId}/getUsers`;
+  getUsersByOrgUrl = `${APIs.organizations}/${this.selectedOrgId}/getUsers`;
   searchSchema: SFSchema = {
     properties: {
       searchKeywords: {
@@ -61,7 +62,7 @@ export class SystemOrganizationsComponent implements OnInit {
   }
 
   getOrgs() {
-    this.http.get('/organizations/all').subscribe(orgData => {
+    this.http.get(`${APIs.organizations}/all`).subscribe(orgData => {
       this.orgTreeData = this.arrayService.arrToTreeNode(
         orgData.map(item => {
           return {
@@ -120,14 +121,14 @@ export class SystemOrganizationsComponent implements OnInit {
     console.log(event);
     this.selectedOrgId = event.node.origin.id;
     this.selectedOrgNode = event.node.origin;
-    this.getUsersByOrgUrl = `/organizations/${this.selectedOrgId}/getUsers`;
+    this.getUsersByOrgUrl = `${APIs.organizations}/${this.selectedOrgId}/getUsers`;
     this.bindUserSt.reload();
   }
 
   bindUsers() {
     if (this.selectedOrgId) {
       this.modal.createStatic(UsersSelectionComponent, { record: {} }, { size: 'lg' }).subscribe(data => {
-        this.http.post(`/organizations/bindUsersByOrg/${this.selectedOrgId}`, { userIds: data }).subscribe(res => {
+        this.http.post(`${APIs.organizations}/bindUsersByOrg/${this.selectedOrgId}`, { userIds: data }).subscribe(res => {
           this.msgSrv.success('操作成功');
           this.refreshUsers();
         });
@@ -149,7 +150,7 @@ export class SystemOrganizationsComponent implements OnInit {
             }
           });
           this.http
-            .post(`/organizations/unBindUsersByOrg/${this.selectedOrgId}`, { userIds: checkedUserIds })
+            .post(`${APIs.organizations}/unBindUsersByOrg/${this.selectedOrgId}`, { userIds: checkedUserIds })
             .subscribe(res => {
               this.msgSrv.success('操作成功');
               // this.st.reload();
@@ -182,7 +183,7 @@ export class SystemOrganizationsComponent implements OnInit {
   moveOrgs(event: NzFormatEmitEvent) {
     console.log(event);
     const dragNode = event.dragNode;
-    this.http.put(`/organizations/${dragNode.key}/move/${dragNode.parentNode.key}`, {}).subscribe(res => {
+    this.http.put(`${APIs.organizations}/${dragNode.key}/move/${dragNode.parentNode.key}`, {}).subscribe(res => {
       this.msgSrv.success('操作成功');
       // this.st.reload();
       // this.refreshUsers();

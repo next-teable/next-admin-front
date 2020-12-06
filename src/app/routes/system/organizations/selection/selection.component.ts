@@ -4,6 +4,7 @@ import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
 import { STComponent, STColumn } from '@delon/abc';
 import { ArrayService } from '@delon/util';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-organizations-selection',
@@ -28,7 +29,7 @@ export class SystemOrganizationsSelectionComponent implements OnInit {
   }
 
   getOrgs() {
-    this.http.get('/organizations/all').subscribe(orgData => {
+    this.http.get(`${APIs.organizations}/all`).subscribe(orgData => {
       this.orgTreeData = this.arrayService.arrToTreeNode(
         orgData.map(item => {
           return {

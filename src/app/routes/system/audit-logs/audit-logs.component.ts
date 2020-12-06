@@ -4,13 +4,14 @@ import { STColumn, STComponent } from '@delon/abc';
 import { SystemAuditLogsViewComponent } from './view/view.component';
 import { formatDate } from '@angular/common';
 import { NzModalService } from 'ng-zorro-antd';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-audit-logs',
   templateUrl: './audit-logs.component.html',
 })
 export class SystemAuditLogsComponent implements OnInit {
-  url = `/auditLogs`;
+  url = `${APIs.auditLogs}`;
   dateFormat = 'yyyy-MM-dd HH:mm:ss';
   searchConditions = {
     blurry: '',
@@ -97,7 +98,7 @@ export class SystemAuditLogsComponent implements OnInit {
     this.confirmServ.confirm({
       nzTitle: '<i>确定要删除审计日志么？（不可恢复）</i>',
       nzOnOk: () => {
-        this.http.delete(`/auditLogs/del/${type}`).subscribe(res => {
+        this.http.delete(`${APIs.auditLogs}/del/${type}`).subscribe(res => {
           this.st.reset({ ...this.st.req.params });
         });
       },

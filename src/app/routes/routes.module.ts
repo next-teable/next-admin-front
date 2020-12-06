@@ -11,10 +11,8 @@ import { UserRegisterResultComponent } from './passport/register-result/register
 // single pages
 import { CallbackComponent } from './callback/callback.component';
 import { UserLockComponent } from './passport/lock/lock.component';
-import { SystemCustomersSelectionComponent } from './system/customers/selection/selection.component';
 import { SystemOrganizationsSelectionComponent } from './system/organizations/selection/selection.component';
 import { SystemUsersSingleSelectionComponent } from './system/users/single-selection/single-selection.component';
-import { SystemSupplierSelectionComponent } from './system/supplier/selection/selection.component';
 
 const COMPONENTS = [
   DashboardComponent,
@@ -27,10 +25,8 @@ const COMPONENTS = [
   UserLockComponent,
 ];
 const COMPONENTS_NOROUNT = [
-  SystemCustomersSelectionComponent,
   SystemOrganizationsSelectionComponent,
   SystemUsersSingleSelectionComponent,
-  SystemSupplierSelectionComponent,
 ];
 
 @NgModule({

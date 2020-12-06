@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-users-curd-edit',
@@ -30,7 +31,7 @@ export class UsersCurdEditComponent implements OnInit {
   ngOnInit(): void {
     if (this.user != null && this.user.id != null) {
       this.schema.properties.username.readOnly = true;
-      this.http.get(`/sysusers/${this.user.id}`).subscribe(res => {
+      this.http.get(`${APIs.sysusers}/${this.user.id}/detail`).subscribe(res => {
         this.user = res;
       });
     }
@@ -38,12 +39,12 @@ export class UsersCurdEditComponent implements OnInit {
 
   save(value: any) {
     if (this.user.id) {
-      this.http.put(`/sysusers/${this.user.id}`, value).subscribe(res => {
+      this.http.put(`${APIs.sysusers}/${this.user.id}/update`, value).subscribe(res => {
         this.msgSrv.success('保存成功');
         this.modal.close(true);
       });
     } else {
-      this.http.post(`/sysusers`, value).subscribe(res => {
+      this.http.post(`${APIs.sysusers}/create`, value).subscribe(res => {
         this.msgSrv.success('保存成功');
         this.modal.close(true);
       });

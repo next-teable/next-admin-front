@@ -8,6 +8,7 @@ import { Placeholder } from '@angular/compiler/src/i18n/i18n_ast';
 import { RoleSelectionComponent } from './bindRoles/selection.component';
 import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 import { ResetPwdComponent } from './resetPwd/resetPwd.component';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-users-curd',
@@ -15,7 +16,7 @@ import { ResetPwdComponent } from './resetPwd/resetPwd.component';
 })
 export class UsersCurdComponent implements OnInit {
   selectedValue = '';
-  url = `/sysusers`;
+  url = `${APIs.sysusers}/query`;
   searchSchema: SFSchema = {
     properties: {
       keyword: {
@@ -78,7 +79,7 @@ export class UsersCurdComponent implements OnInit {
             this.modal
               .createStatic(RoleSelectionComponent, { userId: record.id }, { size: 'md' })
               .subscribe(selectedKeys => {
-                this.http.post(`/sysusers/bindRolesByUser/${record.id}`, { roleIds: selectedKeys }).subscribe(res => {
+                this.http.post(`${APIs.sysusers}/bindRolesByUser/${record.id}`, { roleIds: selectedKeys }).subscribe(res => {
                   this.msgSrv.success('操作成功');
                 });
               });
@@ -105,7 +106,7 @@ export class UsersCurdComponent implements OnInit {
             this.confirmServ.confirm({
               nzTitle: '确定要锁定用户么',
               nzOnOk: () => {
-                this.http.post(`/sysusers/${record.id}/disable`, {}).subscribe(res => {
+                this.http.post(`${APIs.sysusers}/${record.id}/disable`, {}).subscribe(res => {
                   this.msgSrv.success('操作成功');
                   this.st.reload();
                 });
@@ -123,7 +124,7 @@ export class UsersCurdComponent implements OnInit {
             this.confirmServ.confirm({
               nzTitle: '确定要解锁用户么',
               nzOnOk: () => {
-                this.http.post(`/sysusers/${record.id}/enable`, {}).subscribe(res => {
+                this.http.post(`${APIs.sysusers}/${record.id}/enable`, {}).subscribe(res => {
                   this.msgSrv.success('操作成功');
                   this.st.reload();
                 });

@@ -32,9 +32,9 @@ export class DashboardComponent implements OnInit {
     //   });
     // }
 
-    this.http.get('/registryApps/page').subscribe(result => {
-      this.registryApps = result.content;
-    });
+    // this.http.get('/registryApps/page').subscribe(result => {
+    //   this.registryApps = result.content;
+    // });
   }
 
   ssoOpen(app:any){

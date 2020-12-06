@@ -5,6 +5,7 @@ import { SFSchema } from '@delon/form';
 import { SystemDictsEditComponent } from './edit/edit.component';
 import { SystemDictsItemEditComponent } from './item-edit/item-edit.component';
 import { NzMessageService, NzModalService } from 'ng-zorro-antd';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-dicts',
@@ -13,8 +14,8 @@ import { NzMessageService, NzModalService } from 'ng-zorro-antd';
 export class SystemDictsComponent implements OnInit {
   selectedDictName = '';
   selectedDictId = '';
-  dictUrl = `/dicts`;
-  dictItemUrl = `/dictItems/getByDict`;
+  dictUrl = `${APIs.dicts}`;
+  dictItemUrl = `${APIs.dictItems}/getByDict`;
 
   dictSearchSchema: SFSchema = {
     properties: {
@@ -59,7 +60,7 @@ export class SystemDictsComponent implements OnInit {
             this.confirmServ.confirm({
               nzTitle: '<i>确定要删除字典吗？</i>',
               nzOnOk: () => {
-                this.http.delete(`/dicts/${record.id}`).subscribe(res => {
+                this.http.delete(`${APIs.dicts}/${record.id}`).subscribe(res => {
                   this.msgSrv.success('操作成功');
                   this.dictSt.reload();
                 });
@@ -97,7 +98,7 @@ export class SystemDictsComponent implements OnInit {
             this.confirmServ.confirm({
               nzTitle: '<i>确定要删除字典项吗？</i>',
               nzOnOk: () => {
-                this.http.delete(`/dictItems/${record.id}`).subscribe(res => {
+                this.http.delete(`${APIs.dictItems}/${record.id}`).subscribe(res => {
                   this.msgSrv.success('操作成功');
                   this.dictItemSt.reload();
                 });

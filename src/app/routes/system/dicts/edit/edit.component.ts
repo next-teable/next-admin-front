@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { NzModalRef, NzMessageService } from 'ng-zorro-antd';
 import { _HttpClient } from '@delon/theme';
 import { SFSchema, SFUISchema } from '@delon/form';
+import { APIs } from '@shared/api';
 
 @Component({
   selector: 'app-system-dicts-edit',
@@ -18,12 +19,12 @@ export class SystemDictsEditComponent implements OnInit {
 
   save(value: any) {
     if (this.record.id) {
-      this.http.put(`/dicts/${this.record.id}`, value).subscribe(res => {
+      this.http.put(`${APIs.dicts}/${this.record.id}`, value).subscribe(res => {
         this.msgSrv.success('保存成功');
         this.modal.close(true);
       });
     } else {
-      this.http.post(`/dicts`, value).subscribe(res => {
+      this.http.post(`${APIs.dicts}`, value).subscribe(res => {
         this.msgSrv.success('保存成功');
         this.modal.close(true);
       });
