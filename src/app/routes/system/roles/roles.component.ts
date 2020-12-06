@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, EventEmitter } from '@angular/core';
 import { _HttpClient, ModalHelper } from '@delon/theme';
 import { STColumn, STComponent, STReq, STRes, STChange, STRequestOptions } from '@delon/abc';
-import { SFSchema } from '@delon/form';
+import { SFComponent, SFSchema } from '@delon/form';
 import { SystemRolesEditComponent } from './edit/edit.component';
 import { NzTreeComponent } from 'ng-zorro-antd/tree';
 import { NzTreeNode } from 'ng-zorro-antd/core/tree/nz-tree-base-node';
@@ -33,6 +33,20 @@ export class SystemRolesComponent implements OnInit {
       },
     },
   };
+
+
+  searchSchema4BoundUser: SFSchema = {
+    properties: {
+      keyword: {
+        type: 'string',
+        title: '关键字',
+        ui: {
+          placeholder: '请输入编码或描述',
+        },
+      },
+    },
+  };
+
   @ViewChild('st', { static: false }) st: STComponent;
   columns: STColumn[] = [
     { title: '#', index: 'id', type: 'radio' },
@@ -70,6 +84,10 @@ export class SystemRolesComponent implements OnInit {
     { title: '电子邮箱', index: 'email' },
   ];
 
+
+  @ViewChild('queryBoundUserSf', { static: false }) queryBoundUserSf: SFComponent;
+
+
   constructor(
     private http: _HttpClient,
     private msgSrv: NzMessageService,
@@ -86,9 +104,17 @@ export class SystemRolesComponent implements OnInit {
     }
   }
 
+  queryBoundUser() {
+    if (this.selectedRoleId) {
+      this.bindUserSt.reset(this.queryBoundUserSf.value);
+    } else {
+      this.msgSrv.warning('请选定一个角色');
+    }
+  }
+
   userSelect(ret: STChange) {
     if (ret.radio) {
-    }
+    } 
   }
 
   tabChange(ret) {
@@ -187,11 +213,13 @@ export class SystemRolesComponent implements OnInit {
     if (this.selectedRoleId) {
       this.modal.create(UsersSelectionComponent, { record: {} }, { size: 'lg' }).subscribe(selectedKeys => {
         console.log(`keys:${selectedKeys}`);
-        this.http.post(`${APIs.roles}/bindUsersByRole/${this.selectedRoleId}`, { userIds: selectedKeys }).subscribe(res => {
-          this.msgSrv.success('操作成功');
-          // this.st.reload();
-          this.refreshUsers();
-        });
+        this.http
+          .post(`${APIs.roles}/bindUsersByRole/${this.selectedRoleId}`, { userIds: selectedKeys })
+          .subscribe(res => {
+            this.msgSrv.success('操作成功');
+            // this.st.reload();
+            this.refreshUsers();
+          });
       });
     } else {
       this.msgSrv.warning('请选定一个角色');

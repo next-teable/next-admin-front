@@ -7,7 +7,6 @@ import { UsersCurdViewComponent } from './users/view/view.component';
 import { UsersSelectionComponent } from './users/selection/selection.component';
 import { SystemRolesComponent } from './roles/roles.component';
 import { SystemRolesEditComponent } from './roles/edit/edit.component';
-import { SystemRolesViewComponent } from './roles/view/view.component';
 import { SystemOrganizationsComponent } from './organizations/organizations.component';
 import { SystemOrganizationsEditComponent } from './organizations/edit/edit.component';
 import { SystemOrganizationsViewComponent } from './organizations/view/view.component';
@@ -35,7 +34,6 @@ const COMPONENTS_NOROUNT = [
   UsersSelectionComponent,
   RoleSelectionComponent,
   SystemRolesEditComponent,
-  SystemRolesViewComponent,
   SystemOrganizationsEditComponent,
   SystemOrganizationsViewComponent,
   SystemAuditLogsViewComponent,
