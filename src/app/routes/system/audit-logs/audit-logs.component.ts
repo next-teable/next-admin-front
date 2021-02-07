@@ -15,8 +15,8 @@ export class SystemAuditLogsComponent implements OnInit {
   dateFormat = 'yyyy-MM-dd HH:mm:ss';
   searchConditions = {
     blurry: '',
-    logType: '',
-    createdAt: [],
+    auditType: '',
+    createTime: [],
   };
   // searchSchema: SFSchema = {
   //   properties: {
@@ -35,30 +35,29 @@ export class SystemAuditLogsComponent implements OnInit {
   // };
   @ViewChild('st', { static: false }) st: STComponent;
   columns: STColumn[] = [
-    { title: '请求时间', type: 'date', index: 'createdAt' },
-    { title: '请求用户', index: 'username' },
+    { title: '请求时间', type: 'date', index: 'createTime' },
+    { title: '请求用户', index: 'userName' },
     { title: '描述', index: 'description' },
-    { title: 'IP', index: 'requestIp' },
+    { title: 'IP', index: 'outerIPAddress' },
     { title: '地址', index: 'address' },
-    { title: '耗时（毫秒）', index: 'time' },
+    { title: '耗时（毫秒）', index: 'spendTime' },
     {
       title: '类型',
-      index: 'logType',
+      index: 'auditType',
       type: 'badge',
       badge: {
         INFO: { text: 'INFO', color: 'success' },
         ERROR: { text: 'ERROR', color: 'error' },
       },
     },
+    { title: '服务', index: 'serviceName' },
     {
       title: '',
       buttons: [
         {
           text: '查看',
           click: (item: any) => {
-            this.modal
-              .createStatic(SystemAuditLogsViewComponent, { record: { id: item.id } }, { size: 'lg' })
-              .subscribe();
+            this.modal.createStatic(SystemAuditLogsViewComponent, { record: item }, { size: 'lg' }).subscribe();
           },
         },
       ],
@@ -70,8 +69,8 @@ export class SystemAuditLogsComponent implements OnInit {
   ngOnInit() {}
 
   query() {
-    if (this.searchConditions.createdAt && this.searchConditions.createdAt.length > 0) {
-      this.searchConditions.createdAt = this.searchConditions.createdAt.map((date: Date) => {
+    if (this.searchConditions.createTime && this.searchConditions.createTime.length > 0) {
+      this.searchConditions.createTime = this.searchConditions.createTime.map((date: Date) => {
         return formatDate(date, this.dateFormat, 'zh-cn');
       });
     }
@@ -85,8 +84,8 @@ export class SystemAuditLogsComponent implements OnInit {
   reset() {
     this.searchConditions = {
       blurry: '',
-      logType: '',
-      createdAt: [],
+      auditType: '',
+      createTime: [],
     };
     this.st.reset({
       ...this.st.req.params,

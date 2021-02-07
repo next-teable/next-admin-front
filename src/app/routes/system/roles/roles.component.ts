@@ -34,7 +34,6 @@ export class SystemRolesComponent implements OnInit {
     },
   };
 
-
   searchSchema4BoundUser: SFSchema = {
     properties: {
       keyword: {
@@ -84,9 +83,7 @@ export class SystemRolesComponent implements OnInit {
     { title: '电子邮箱', index: 'email' },
   ];
 
-
   @ViewChild('queryBoundUserSf', { static: false }) queryBoundUserSf: SFComponent;
-
 
   constructor(
     private http: _HttpClient,
@@ -114,7 +111,7 @@ export class SystemRolesComponent implements OnInit {
 
   userSelect(ret: STChange) {
     if (ret.radio) {
-    } 
+    }
   }
 
   tabChange(ret) {
@@ -256,7 +253,21 @@ export class SystemRolesComponent implements OnInit {
     this.reloadResouce();
   }
 
-  bindPermissions() {}
+  bindPermissions() {
+    const checkedPermissions = [];
+    this.permissionsData.forEach(item => {
+      if (item.checked) {
+        checkedPermissions.push(item.id);
+      }
+    });
+    if (checkedPermissions.length > 0) {
+      this.http
+        .post(`${APIs.roles}/bindPermissionByRole/${this.selectedRoleId}`, { permissionIds: checkedPermissions })
+        .subscribe(res => {
+          this.msgSrv.success('操作成功');
+        });
+    }
+  }
 
   checkPermissionsAll(value: boolean) {}
 }

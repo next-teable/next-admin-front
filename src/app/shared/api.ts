@@ -11,6 +11,7 @@ export const APIs = {
   dicts: 'common-api/dicts',
   dictItems: 'common-api/dictItems',
   auditLogs: 'common-api/auditLogs',
+  dlq: 'common-api/dlq',
   paper: {
     messagePending: 'oa-api/papers/processing',
   }

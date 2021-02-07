@@ -6,10 +6,10 @@
 <nz-card>
   <form nz-form #f="ngForm" se-container="4" nzLayout="inline" firstVisual="false">
     <se label="关键字">
-      <input type="text" nz-input [(ngModel)]="searchConditions.blurry" name="blurry">
+      <input type="text" nz-input [(ngModel)]="searchConditions.blurry" name="blurry" placeholder="描述，参数，用户名">
     </se>
     <se label="类型">
-      <nz-radio-group name="logType" [(ngModel)]="searchConditions.logType">
+      <nz-radio-group name="auditType" [(ngModel)]="searchConditions.auditType">
         <label nz-radio-button nzValue=""><span>全部</span></label>
         <label nz-radio-button nzValue="INFO"><span>INFO</span></label>
         <label nz-radio-button nzValue="ERROR"><span>ERROR</span></label>
@@ -17,7 +17,7 @@
       <!-- <input type="text" nz-input [(ngModel)]="searchConditions.logType" name="logType"> -->
     </se>
     <se label="时间范围">
-      <nz-range-picker name="createdAt" [(ngModel)]="searchConditions.createdAt">
+      <nz-range-picker name="createTime" [(ngModel)]="searchConditions.createTime">
       </nz-range-picker>
       <!-- <input type="text" nz-input [(ngModel)]="searchConditions.createdAt" name="createdAt"> -->
     </se>

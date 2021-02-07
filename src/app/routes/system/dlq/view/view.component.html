@@ -1,0 +1,16 @@
+<div class="modal-header">
+  <div class="modal-title">查看死信详情</div>
+</div>
+<nz-spin *ngIf="!record" class="modal-spin"></nz-spin>
+<sv-container *ngIf="record" size="large" col="1" labelWidth="100">
+  <sv label="原队列">{{ record.originalTopic }}</sv>
+  <sv label="事件">{{ record.businessEvent }}</sv>
+  <sv label="创建时间">{{ record.createdAt  | date:'yyyy-MM-dd HH:mm:ss'}}</sv>
+  <sv label="请求"><textarea readonly nz-input rows="6">{{ record.payload }}</textarea></sv>
+  <sv label="错误">{{ record.exceptionMessage }}</sv>
+  <sv label="堆栈"><textarea readonly nz-input
+    rows="16">{{ record.exceptionStacktrace }}</textarea></sv>
+</sv-container>
+<div class="modal-footer">
+  <button nz-button type="button" (click)="close()">关闭</button>
+</div>

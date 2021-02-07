@@ -13,7 +13,7 @@ export class SystemAuditLogsViewComponent implements OnInit {
   constructor(private modal: NzModalRef, public msgSrv: NzMessageService, public http: _HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get(`${APIs.auditLogs}/${this.record.id}`).subscribe(res => (this.record = res));
+    // this.http.get(`${APIs.auditLogs}/${this.record.id}`).subscribe(res => (this.record = res));
   }
 
   close() {

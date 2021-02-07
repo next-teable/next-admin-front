@@ -3,14 +3,14 @@
     <button (click)="add()" nz-button nzType="primary">新建</button>
   </ng-template>
 </page-header>
-<nz-card>
-  <div nz-row nzGutter="16">
+<nz-card nsAutoHeightCard>
+  <div nz-row nzGutter="16" nsAutoHeightDiv>
     <div nz-col nzSpan="12">
       <sf mode="search" [schema]="searchSchema" (formSubmit)="st.reset($event)" (formReset)="st.reset($event)"></sf>
       <st #st [data]="url" [columns]="columns" (change)="roleSelect($event)"></st>
     </div>
-    <div nz-col nzSpan="12">
-      <nz-tabset [nzSelectedIndex]="selectedTabIndex" (nzSelectedIndexChange)="tabChange($event)">
+    <div nz-col nzSpan="12" nsAutoHeightDiv>
+      <nz-tabset nsAutoHeightTabset [nzSelectedIndex]="selectedTabIndex" (nzSelectedIndexChange)="tabChange($event)">
         <nz-tab nzTitle="用户">
           <st #bindUserSt [header]="userToolbar" [data]="getUsersByRoleUrl" [req]="getUsersByRoleReq"
             [columns]="getUsersByRoleCols" (change)="userSelect($event)"></st>
@@ -35,19 +35,26 @@
         </nz-tab>
         <nz-tab nzTitle="权限">
           <nz-empty *ngIf="!selectedRoleId"></nz-empty>
-          <div *ngIf="selectedRoleId">
+          <div nsAutoHeightDiv="45" *ngIf="selectedRoleId">
             <button nz-button nzType="primary" (click)="bindPermissions()">保存</button>
-            <nz-table #permissionTable nzSize="small" [nzData]="permissionsData" [nzShowPagination]='false'>
+            <nz-table nsAutoHeightTable #permissionTable nzSize="small" [nzData]="permissionsData"
+              [nzShowPagination]='false'>
               <thead>
                 <tr>
-                  <th nzShowCheckbox (nzCheckedChange)="checkPermissionsAll($event)"></th>
+                  <th nzWidth="5%" nzShowCheckbox (nzCheckedChange)="checkPermissionsAll($event)"></th>
+                  <th nzWidth="8%">类型</th>
                   <th>权限名称</th>
+                  <th>资源标识</th>
                 </tr>
               </thead>
               <tbody>
                 <tr *ngFor="let data of permissionsData">
                   <td nzShowCheckbox [(nzChecked)]="data.checked"></td>
+                  <td>
+                    <nz-tag>{{ data.requestMethods }}</nz-tag>
+                  </td>
                   <td>{{ data.name }}</td>
+                  <td>{{ data.url }}</td> 
               </tbody>
             </nz-table>
           </div>

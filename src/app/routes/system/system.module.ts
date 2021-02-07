@@ -20,6 +20,8 @@ import { SystemDictsItemEditComponent } from './dicts/item-edit/item-edit.compon
 import { SystemSelectionEditComponent } from './selection/edit/edit.component';
 import { ResetPwdComponent } from './users/resetPwd/resetPwd.component';
 import { SystemSelectionViewComponent } from './selection/view/view.component';
+import { SystemDlqComponent } from './dlq/dlq.component';
+import { SystemDlqViewComponent } from './dlq/view/view.component';
 
 const COMPONENTS = [
   UsersCurdComponent,
@@ -27,7 +29,8 @@ const COMPONENTS = [
   SystemOrganizationsComponent,
   SystemAuditLogsComponent,
   SystemDictsComponent,
-];
+  SystemDlqComponent];
+
 const COMPONENTS_NOROUNT = [
   UsersCurdEditComponent,
   UsersCurdViewComponent,
@@ -43,6 +46,7 @@ const COMPONENTS_NOROUNT = [
   SystemSelectionEditComponent,
   SystemSelectionViewComponent,
   ResetPwdComponent,
+  SystemDlqViewComponent
 ];
 
 @NgModule({
