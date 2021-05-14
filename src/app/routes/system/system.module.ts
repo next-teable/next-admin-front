@@ -22,6 +22,9 @@ import { ResetPwdComponent } from './users/resetPwd/resetPwd.component';
 import { SystemSelectionViewComponent } from './selection/view/view.component';
 import { SystemDlqComponent } from './dlq/dlq.component';
 import { SystemDlqViewComponent } from './dlq/view/view.component';
+import { SystemTenantsComponent } from './tenants/tenants.component';
+import { SystemTenantsEditComponent } from './tenants/edit/edit.component';
+import { SystemTenantsViewComponent } from './tenants/view/view.component';
 
 const COMPONENTS = [
   UsersCurdComponent,
@@ -29,7 +32,10 @@ const COMPONENTS = [
   SystemOrganizationsComponent,
   SystemAuditLogsComponent,
   SystemDictsComponent,
-  SystemDlqComponent];
+  SystemDlqComponent,
+  SystemTenantsComponent,
+  SystemTenantsComponent,
+];
 
 const COMPONENTS_NOROUNT = [
   UsersCurdEditComponent,
@@ -46,7 +52,9 @@ const COMPONENTS_NOROUNT = [
   SystemSelectionEditComponent,
   SystemSelectionViewComponent,
   ResetPwdComponent,
-  SystemDlqViewComponent
+  SystemDlqViewComponent,
+  SystemTenantsEditComponent,
+  SystemTenantsViewComponent,
 ];
 
 @NgModule({

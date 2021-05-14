@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "budday-frontend": {
+    "budday-common-frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/budday-frontend",
+            "outputPath": "dist/budday-common-frontend",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -85,15 +85,15 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "budday-frontend:build",
+            "browserTarget": "budday-common-frontend:build",
             "proxyConfig": "proxy.conf.json"
           },
           "configurations": {
             "production": {
-              "browserTarget": "budday-frontend:build:production"
+              "browserTarget": "budday-common-frontend:build:production"
             },
             "hmr": {
-              "browserTarget": "budday-frontend:build:hmr",
+              "browserTarget": "budday-common-frontend:build:hmr",
               "hmr": true
             }
           }
@@ -101,7 +101,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "budday-frontend:build"
+            "browserTarget": "budday-common-frontend:build"
           }
         },
         "test": {
@@ -146,18 +146,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "budday-frontend:serve"
+            "devServerTarget": "budday-common-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "budday-frontend:serve:production"
+              "devServerTarget": "budday-common-frontend:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "budday-frontend",
+  "defaultProject": "budday-common-frontend",
   "schematics": {
     "ng-alain:module": {
       "routing": true,

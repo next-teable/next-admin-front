@@ -1,0 +1,33 @@
+version: '3'
+services:
+  budday-common-frontend:
+    container_name: budday-common-frontend
+    image: registry.cn-hangzhou.aliyuncs.com/flipped/budday-common-frontend:latest
+    depends_on:
+      - budday-common-service-container-0
+      - budday-tenant-admin-container-0
+      - budday-message-service-container-0
+      - budday-saas-admin-frontend-container-0
+    ports:
+      - 80:80
+
+  budday-saas-admin-frontend-container-0:
+    image: registry.cn-hangzhou.aliyuncs.com/flipped/budday-saas-admin-frontend:latest
+    container_name: budday-saas-admin-frontend-container-0
+    # ports:
+    #   - 38080:80
+
+  budday-common-service-container-0:
+    image: registry.cn-hangzhou.aliyuncs.com/flipped/budday-common-service:latest
+    container_name: budday-common-service-container-0
+
+  budday-tenant-admin-container-0:
+    image: registry.cn-hangzhou.aliyuncs.com/flipped/budday-tenant-admin:latest
+    container_name: budday-tenant-admin-container-0
+
+  budday-message-service-container-0:
+    image: registry.cn-hangzhou.aliyuncs.com/flipped/budday-message-service:latest
+    container_name: budday-message-service-container-0
+
+
+

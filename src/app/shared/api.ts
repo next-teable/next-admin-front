@@ -12,6 +12,8 @@ export const APIs = {
   dictItems: 'common-api/dictItems',
   auditLogs: 'common-api/auditLogs',
   dlq: 'common-api/dlq',
+  tenants: 'common-api/tenants',
+  token: 'common-api/token',
   paper: {
     messagePending: 'oa-api/papers/processing',
   }
